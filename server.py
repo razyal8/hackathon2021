@@ -77,7 +77,7 @@ def connectionServer():
                 udpServerSocket.sendto(msgToSend, address) # send the offer to defined address
             except:
                 pass
-            time.sleep(1) # broadcasting every 1 second
+            time.sleep(1)
     except: 
         pass
     udpServerSocket.close()

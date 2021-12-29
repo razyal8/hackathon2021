@@ -1,7 +1,6 @@
 import socket
 import scapy.all as scapy
 import struct
-# import getch
 import msvcrt
 
 #ipClient = scapy.get_if_addr('eth2') # test
@@ -37,9 +36,7 @@ def lockingForServer():
     while True:
         try:
             msgFromServer , address = UDPClientSocket.recvfrom(bufferSize)
-            print("msgFromServer : ",msgFromServer)
             magicCookies , msgType , serverPort = struct.unpack('!IBH',msgFromServer)
-            print("massege : ",address)
             if magicCookies == 0xabcddcba and msgType == 0x2:
                 global tcpServerIp, tcpServerPort
                 tcpServerIp=address[0]
@@ -65,7 +62,6 @@ def connToServer():
         data = tcpClientA.recv(bufferSize).decode()
         print(data)
         if data:
-            print(data)
             data = None
             tcpClientA.send(msvcrt.getch())
         while True:
@@ -74,10 +70,10 @@ def connToServer():
             except:
                 pass
             if data:
-                print(data)
+                print(data)#game over
                 break
             else:
-                tcpClientA.send(msvcrt.getch())
+                tcpClientA.send(msvcrt.getch())#keep trying
     except:
        print("error TCP")
        return
