@@ -1,7 +1,7 @@
 import socket
 import scapy.all as scapy
 import struct
-import msvcrt
+import getch
 
 # s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # host=socket.gethostname()
@@ -11,8 +11,8 @@ import msvcrt
 #-------------------------------------------------
 
 # network ip
-#ipClient = scapy.get_if_addr('eth2') # test
-client_ip = '127.0.0.1' # localhost
+ipClient = scapy.get_if_addr('eth2') # test
+#client_ip = '127.0.0.1' # localhost
 # ports
 udpPort = 13117 
 client_tcp_port = 2144 
@@ -76,8 +76,8 @@ def connToServer():
         # if got the welcome message - start 
         data = None
         tcpClientA.setblocking(False)
-        # tcp_client_socket.send(getch.getche().encode())
-        tcpClientA.send(msvcrt.getch())
+        tcpClientA.send(getch.getche().encode())
+        #tcpClientA.send(msvcrt.getch())
 
     while True:
         # check if client got message of game over: true - print the winners.
@@ -90,7 +90,7 @@ def connToServer():
             print(data)
             break
         else:
-            tcpClientA.send(msvcrt.getch())
+            tcpClientA.send(getch())
    
 
 # start the client
